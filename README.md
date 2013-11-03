@@ -18,7 +18,7 @@ Usage
 
 ### Example
 
-This is a simple example to add the atlas and sft CERN repositories, using a quota limit of 10GB for the cache
+This is a simple example to add the atlas and sft CERN repositories, using a quota limit of 10 GB for the cache
 size and a local squid proxy mysquid.example.com. The module will use the current defaults:
 
 * repositories = 'sft.cern.ch'
@@ -30,7 +30,7 @@ size and a local squid proxy mysquid.example.com. The module will use the curren
 ```cvmfs
 class { 'cvmfs::client':
     repositories => 'atlas.cern.ch,sft.cern.ch',
-    quota_limit  => 30000,
+    quota_limit  => 10000,
     http_proxy   => 'http://mysquid.example.com:3128'
 }
 ```
