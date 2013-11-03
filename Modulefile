@@ -1,0 +1,5 @@
+name    'desalvo-cvmfs'
+version '0.1.0'
+author 'desalvo'
+license 'Apache License, Version 2.0'
+summary 'Module for CVMFS customizations'
