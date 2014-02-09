@@ -20,6 +20,7 @@ class cvmfs::client (
       "/etc/cvmfs/default.local":
       owner => root, group => root, mode => 644,
       content => template("cvmfs/default.local.erb"),
+      notify => Exec["cvmfs reload"]
     }
 
     file { "/etc/auto.cvmfs":
@@ -29,8 +30,16 @@ class cvmfs::client (
         mode    => 0755,
     }
 
-    service { "cvmfs":
-        restart   => "/usr/bin/cvmfs_config reload",
-        subscribe => File["/etc/cvmfs/default.local"]
+    exec { "cvmfs reload":
+        path => [ "/bin", "/usr/bin" ],
+        command => "cvmfs_config reload",
+        timeout => 0,
+        refreshonly => true,
+        require => [Package["cvmfs"],Package["cvmfs-init-scripts"],Package["cvmfs-auto-setup"]]
     }
+
+    #service { "cvmfs":
+    #    restart   => "/usr/bin/cvmfs_config reload",
+    #    subscribe => File["/etc/cvmfs/default.local"]
+    #}
 }
