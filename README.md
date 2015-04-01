@@ -48,6 +48,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.2**
+
+Support for cvmfs 2.1.20
+
 **0.1.1**
 
 Fix for cvmfs 2.1 service reload

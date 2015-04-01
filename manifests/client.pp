@@ -5,7 +5,7 @@ class cvmfs::client (
 ) inherits cvmfs {
 
     package { cvmfs: ensure => installed, require => Package["cvmfs-release"] }
-    package { cvmfs-init-scripts: ensure => installed, require => Package["cvmfs-release"] }
+    package { cvmfs-config-default: ensure => installed, require => Package["cvmfs-release"] }
     package { cvmfs-auto-setup: ensure => installed, require => Package["cvmfs-release"] }
     if (!defined(Package["fuse"])) {
         package { fuse: ensure => latest }
@@ -24,10 +24,10 @@ class cvmfs::client (
     }
 
     file { "/etc/auto.cvmfs":
-        ensure  => file,
+        ensure  => link,
+        target  => '/usr/libexec/cvmfs/auto.cvmfs',
         owner   => "root",
         group   => "root",
-        mode    => 0755,
     }
 
     exec { "cvmfs reload":
@@ -35,7 +35,7 @@ class cvmfs::client (
         command => "cvmfs_config reload",
         timeout => 0,
         refreshonly => true,
-        require => [Package["cvmfs"],Package["cvmfs-init-scripts"],Package["cvmfs-auto-setup"]]
+        require => [Package["cvmfs"],Package["cvmfs-config-default"],Package["cvmfs-auto-setup"]]
     }
 
     #service { "cvmfs":
