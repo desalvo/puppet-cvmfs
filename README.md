@@ -24,6 +24,7 @@ size and a local squid proxy mysquid.example.com. The module will use the curren
 * repositories = 'sft.cern.ch'
 * quota_limit = 30000
 * no http_proxy
+* default cache base
 
 **Defining a cvmfs client customization**
 
@@ -31,7 +32,8 @@ size and a local squid proxy mysquid.example.com. The module will use the curren
 class { 'cvmfs::client':
     repositories => 'atlas.cern.ch,sft.cern.ch',
     quota_limit  => 10000,
-    http_proxy   => 'http://mysquid.example.com:3128'
+    http_proxy   => 'http://mysquid.example.com:3128',
+    cache_base   => '/var/cache/cvmfs'
 }
 ```
 
@@ -47,6 +49,10 @@ Contributors
 
 Release Notes
 -------------
+
+**0.1.3**
+
+Support for cache_base option and puppet 4
 
 **0.1.2**
 

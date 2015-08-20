@@ -1,5 +1,5 @@
 name    'desalvo-cvmfs'
-version '0.1.2'
+version '0.1.3'
 source  'https://github.com/desalvo/puppet-cvmfs'
 author 'desalvo'
 license 'Apache License, Version 2.0'

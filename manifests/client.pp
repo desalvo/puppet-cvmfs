@@ -2,6 +2,7 @@ class cvmfs::client (
   $repositories = 'sft.cern.ch',
   $quota_limit = 30000,
   $http_proxy = undef,
+  $cache_base = undef,
 ) inherits cvmfs {
 
     package { cvmfs: ensure => installed, require => Package["cvmfs-release"] }
@@ -16,9 +17,10 @@ class cvmfs::client (
     } else {
         $default_http_proxy = "${http_proxy};DIRECT"
     }
+
     file {
       "/etc/cvmfs/default.local":
-      owner => root, group => root, mode => 644,
+      owner => 'root', group => 'root', mode => '0644',
       content => template("cvmfs/default.local.erb"),
       notify => Exec["cvmfs reload"]
     }
@@ -37,9 +39,4 @@ class cvmfs::client (
         refreshonly => true,
         require => [Package["cvmfs"],Package["cvmfs-config-default"],Package["cvmfs-auto-setup"]]
     }
-
-    #service { "cvmfs":
-    #    restart   => "/usr/bin/cvmfs_config reload",
-    #    subscribe => File["/etc/cvmfs/default.local"]
-    #}
 }
