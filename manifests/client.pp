@@ -7,7 +7,6 @@ class cvmfs::client (
 
     package { cvmfs: ensure => installed, require => Package["cvmfs-release"] }
     package { cvmfs-config-default: ensure => installed, require => Package["cvmfs-release"] }
-    #package { cvmfs-auto-setup: ensure => installed, require => Package["cvmfs-release"] }
     if (!defined(Package["fuse"])) {
         package { fuse: ensure => latest }
     }
@@ -37,6 +36,6 @@ class cvmfs::client (
         command => "cvmfs_config reload",
         timeout => 0,
         refreshonly => true,
-        require => [Package["cvmfs"],Package["cvmfs-config-default"],Package["cvmfs-auto-setup"]]
+        require => [Package["cvmfs"],Package["cvmfs-config-default"]]
     }
 }
