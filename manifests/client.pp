@@ -7,7 +7,7 @@ class cvmfs::client (
 
     package { cvmfs: ensure => installed, require => Package["cvmfs-release"] }
     package { cvmfs-config-default: ensure => installed, require => Package["cvmfs-release"] }
-    package { cvmfs-auto-setup: ensure => installed, require => Package["cvmfs-release"] }
+    #package { cvmfs-auto-setup: ensure => installed, require => Package["cvmfs-release"] }
     if (!defined(Package["fuse"])) {
         package { fuse: ensure => latest }
     }
