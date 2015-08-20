@@ -4,6 +4,7 @@ class cvmfs::client (
   $http_proxy = undef,
   $cache_base = undef,
 ) inherits cvmfs {
+    include '::autofs'
 
     package { cvmfs: ensure => installed, require => Package["cvmfs-release"] }
     package { cvmfs-config-default: ensure => installed, require => Package["cvmfs-release"] }
@@ -36,6 +37,7 @@ class cvmfs::client (
         command => "cvmfs_config setup && cvmfs_config reload",
         timeout => 0,
         refreshonly => true,
-        require => [Package["cvmfs"],Package["cvmfs-config-default"]]
+        require => [Package["cvmfs"],Package["cvmfs-config-default"]],
+        notify => Service[$::autofs::params::service]
     }
 }
