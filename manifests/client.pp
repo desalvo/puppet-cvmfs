@@ -33,7 +33,7 @@ class cvmfs::client (
 
     exec { "cvmfs reload":
         path => [ "/bin", "/usr/bin" ],
-        command => "cvmfs_config reload",
+        command => "cvmfs_config setup && cvmfs_config reload",
         timeout => 0,
         refreshonly => true,
         require => [Package["cvmfs"],Package["cvmfs-config-default"]]
