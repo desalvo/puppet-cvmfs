@@ -25,13 +25,6 @@ class cvmfs::client (
       notify => Exec["cvmfs reload"]
     }
 
-    file { "/etc/auto.cvmfs":
-        ensure  => link,
-        target  => '/usr/libexec/cvmfs/auto.cvmfs',
-        owner   => "root",
-        group   => "root",
-    }
-
     exec { "cvmfs reload":
         path => [ "/bin", "/usr/bin" ],
         command => "cvmfs_config setup && cvmfs_config reload",
