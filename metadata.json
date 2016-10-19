@@ -1,6 +1,6 @@
 {
   "name": "desalvo-cvmfs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "desalvo",
   "summary": "Puppet module for CVMFS customizations",
   "license": "Apache License, Version 2.0",
@@ -10,5 +10,6 @@
   "description": "Puppet module to customize the CVMFS HTTP based filesystem",
   "dependencies": [
     {"version_requirement":">= 1.1.0","name":"pdxcat/autofs"}
+    {"version_requirement":">= 1.10.0","name":"puppetlabs/apache"}
   ]
 }
