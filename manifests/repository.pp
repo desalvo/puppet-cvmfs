@@ -11,7 +11,7 @@ define cvmfs::repository (
      content => template("${module_name}/conf.erb")
    }
 
-   exec {"create /etc/cvmfs/keys${cvmfs_key_dir}":
+   exec {"create ${title} /etc/cvmfs/keys${cvmfs_key_dir}":
      path => ['/bin','/usr/bin'],
      command => "mkdir -p /etc/cvmfs/keys${cvmfs_key_dir}",
      unless  => "test -d /etc/cvmfs/keys${cvmfs_key_dir}"
@@ -22,6 +22,6 @@ define cvmfs::repository (
      group   => 'root',
      mode    => '0444',
      source  => $cvmfs_public_key,
-     require => Exec["create /etc/cvmfs/keys${cvmfs_key_dir}"]
+     require => Exec["create ${title} /etc/cvmfs/keys${cvmfs_key_dir}"]
    }
 }

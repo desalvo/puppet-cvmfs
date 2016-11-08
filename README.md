@@ -76,6 +76,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.5**
+
+Support for multiple repositories in the same key dir
+
 **0.1.4**
 
 Initial support for server and custom repositories
