@@ -1,6 +1,6 @@
 {
   "name": "desalvo-cvmfs",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "desalvo",
   "summary": "Puppet module for CVMFS customizations",
   "license": "Apache License, Version 2.0",

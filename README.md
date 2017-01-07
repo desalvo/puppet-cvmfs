@@ -76,6 +76,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.6**
+
+Change repository name
+
 **0.1.5**
 
 Support for multiple repositories in the same key dir
