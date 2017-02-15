@@ -11,4 +11,13 @@ class cvmfs {
             fail("Unsupported operating system: ${::operatingsystem}")
         }
     }
+
+    augeas{ "cvmfs release raise priority" :
+        context => "/files/etc/yum.repos.d/cernvm.repo",
+        changes => [
+            "set cernvm/priority 1",
+            "set cernvm-config/priority 1",
+        ],
+   }
+
 }
