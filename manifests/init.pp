@@ -18,6 +18,5 @@ class cvmfs {
             "set cernvm/priority 1",
             "set cernvm-config/priority 1",
         ],
-   }
-
+    }
 }
