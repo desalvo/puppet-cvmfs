@@ -76,6 +76,10 @@ Contributors
 Release Notes
 -------------
 
+**0.1.7**
+
+Configurable config package
+
 **0.1.6**
 
 Change repository name

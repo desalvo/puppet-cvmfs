@@ -3,11 +3,12 @@ class cvmfs::client (
   $quota_limit = 30000,
   $http_proxy = undef,
   $cache_base = undef,
+  $config = 'cvmfs-config-default',
 ) inherits cvmfs {
     include '::autofs'
 
-    package { cvmfs: ensure => installed, require => Package["cvmfs-release"] }
-    package { cvmfs-config-default: ensure => installed, require => Package["cvmfs-release"] }
+    package { 'cvmfs': ensure => installed, require => Package["cvmfs-release"] }
+    package { $config: ensure => installed, require => Package["cvmfs-release"] }
     if (!defined(Package["fuse"])) {
         package { fuse: ensure => latest }
     }
@@ -30,7 +31,7 @@ class cvmfs::client (
         command => "cvmfs_config setup && cvmfs_config reload",
         timeout => 0,
         refreshonly => true,
-        require => [Package["cvmfs"],Package["cvmfs-config-default"]],
+        require => [Package["cvmfs"],Package[$config]],
         notify => Service[$::autofs::params::service]
     }
 }
