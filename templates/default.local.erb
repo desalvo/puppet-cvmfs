@@ -2,6 +2,9 @@ CVMFS_REPOSITORIES=<%= @repositories -%>
 
 CVMFS_QUOTA_LIMIT=<%= @quota_limit -%> 
 CVMFS_HTTP_PROXY="<%= @default_http_proxy -%>"
+<% if @ipfamily_prefer -%>
+CVMFS_IPFAMILY_PREFER="<%= @ipfamily_prefer -%>"
+<% end -%>
 <% if @cache_base and @cache_base != '' -%>
 CVMFS_CACHE_BASE="<%= @cache_base -%>"
 <% end -%>
